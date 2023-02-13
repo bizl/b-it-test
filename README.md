@@ -34,10 +34,10 @@ Immediate next improvements:
   - Mock
   
 ## How to Run the site (windows) 
--Checkout the git repository 
--Start command prompt and navigate to the web application root folder  <local-folder>\BoroughITTest\CustomerManager\CustomerManager.Web
--Type "dotnet run". The site will build and display the server url and endpoint 
--Enter url in web browser 
--Register with username and password, then login 
+- Checkout the git repository 
+- Start command prompt and navigate to the web application root folder  <local-folder>\BoroughITTest\CustomerManager\CustomerManager.Web
+- Type "dotnet run". The site will build and display the server url and endpoint 
+- Enter url in web browser 
+- Register with username and password, then login 
   
   
