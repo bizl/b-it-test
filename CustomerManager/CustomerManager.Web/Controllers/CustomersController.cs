@@ -14,6 +14,7 @@ namespace CustomerManager.Web.Controllers
         {
             _customerRepository = customerRepository;
         }
+
         // GET: api/<CustomersController>
         [HttpGet]
         public IEnumerable<Customer> Get()
@@ -21,7 +22,7 @@ namespace CustomerManager.Web.Controllers
             return _customerRepository.Get(new Customer { });
         }
 
-        // GET api/<CustomersController>/5
+        // GET api/<CustomersController>/{id}
         [HttpGet]
         [Route("{id}")]
         public Customer Get(long id)
@@ -30,30 +31,29 @@ namespace CustomerManager.Web.Controllers
         }
 
         // POST api/<CustomersController>
-        [HttpPost]
-        [Route("{id}")]
-        public ActionResult Post(long id, [FromBody] Customer sent)
+        [HttpPost] 
+        public ActionResult Post( [FromBody] Customer customerJson)
         {
-            var customer = _customerRepository.Get(new Customer { Id = id }).FirstOrDefault();
-            if (customer == null)
+            var customer = _customerRepository.Get(new Customer { Id = customerJson.Id }).FirstOrDefault();
+            if (customer != null)
             {
-                return BadRequest(  "Customer already exists"  );
+                return BadRequest("Customer {customerJson.FirstName} {customerJson.LastName} already exists");
             }
 
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             Guid user;
             Guid.TryParse(userId, out user);
-            _customerRepository.Insert(customer, user);
+            _customerRepository.Insert(customerJson, user);
 
             return Ok("Created");
         }
 
-        // PUT api/<CustomersController>/5
+        // PUT api/<CustomersController>
         [HttpPut]
-        public  ActionResult Put(long id, [FromBody] Customer sent)
+        public  ActionResult Put([FromBody] Customer customerJson)
         {
 
-            var customer = _customerRepository.Get(new Customer { Id = sent.Id }).FirstOrDefault();
+            var customer = _customerRepository.Get(new Customer { Id = customerJson.Id }).FirstOrDefault();
             if (customer == null)
             {
                 return BadRequest( "Customer not found");
@@ -64,21 +64,32 @@ namespace CustomerManager.Web.Controllers
                 var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier); 
                 Guid user;
                 Guid.TryParse(userId, out user);
-                _customerRepository.Update(sent, user);
+                _customerRepository.Update(customerJson, user);
             }
             catch (Exception ex)
             {
                 return StatusCode(500, ex);
             }
 
-            return NotFound ();
+            return Ok ("Customer updated");
         }
 
-        // DELETE api/<CustomersController>/5
+        // DELETE api/<CustomersController>/{id}
         [HttpDelete]
-        public void Delete(int id)
+        public ActionResult Delete(int id)
         {
-           throw new NotImplementedException();
+            var customer = _customerRepository.Get(new Customer { Id = id }).FirstOrDefault();
+            if (customer == null)
+            {
+                return BadRequest("Customer record to delete does not exist");
+            }
+
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            Guid user;
+            Guid.TryParse(userId, out user);
+            _customerRepository.Update(customer, user);
+
+            return Ok("Customer record deleted");
         }
     }
 }

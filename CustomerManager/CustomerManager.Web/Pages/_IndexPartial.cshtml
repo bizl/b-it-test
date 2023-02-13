@@ -7,74 +7,67 @@
 
       
     <form id="insertForm" action="javascript:void(0);" method="POST" onsubmit="addItem()">
-        <input type="text" id="add-name" placeholder="New customer">
-        <input type="submit" value="Add">
+        <input type="text" id="add-firstname" placeholder="First name">
+        <input type="text" id="add-lastname" placeholder="Last name">
+        <input type="submit" value="Quick Add">
     </form>
 
     <div id="editForm">
         <h3>Edit</h3>
-        <form action="javascript:void(0);" onsubmit="updateItem()">
+         <form action="javascript:void(0);" onsubmit="updateItem()">
             
-    <table>
-        <th> 
-            <td>Edit customer detail
+        <table style="width:20%">
+            <tr>
+            <th> Edit customer detail
 
-            <input type="hidden" id="edit-id"> 
-            </td>
-            <td>
-                <a onclick="closeInput()" aria-label="Close">&#10006;</a>
-            </td>
-        </th>
-        <tr style="width:20%">
-            <td> First name:</td>
-            <td><input type="text" id="edit-firstname" maxlength="50">
-
-            </td> 
-        </tr>
-        <tr style="width:20%">
-            <td> Last name:</td>
-            <td>
-                <input type="text" id="edit-lastname" maxlength="50">
-            </td> 
-        </tr>
-        <tr style="width:20%">
-            <td> Age:</td>
-            <td>
-                <input type="text" id="edit-age" maxlength="3" data-validate="number">
-            </td> 
-        </tr>
-        <tr style="width:20%">
-            <td> Address:</td>
-            <td>
-                <textarea type="text" id="edit-address" maxlength="350" rows="4" />
-            </td> 
-        </tr>
-        <tr style="width:20%">
-            <td> Telephone:</td>
-            <td>
-                <input type="text" id="edit-telephone" maxlength="15">
-            </td> 
-        </tr>
-        <tr style="width:20%">
-            <td> Reference:</td>
-            <td>
-                <input type="text" id="edit-reference" maxlength="25">
-            </td> 
-        </tr> 
-        <tr style="width:20%">
-            <td> &nbsp; </td>
-            <td>
-                <input type="submit" value="Save">
-            </td> 
-        </tr> 
-    </table>
-           
-            
-            
-            
-            
-            
-            
+                <input type="hidden" id="edit-id"> 
+                </th>
+                <th>
+                    <a onclick="closeInput()" aria-label="Close">&#10006;</a>
+                </th> 
+            </tr> 
+            <tr>
+                <td> First name:</td>
+                <td><input type="text" id="edit-firstname" maxlength="50"> 
+                </td> 
+            </tr>
+             <tr>
+                <td> Last name:</td>
+                <td>
+                    <input type="text" id="edit-lastname" maxlength="50">
+                </td> 
+            </tr>
+             <tr>
+                <td> Age:</td>
+                <td>
+                    <input type="text" id="edit-age" maxlength="3" data-validate="number" onkeypress="return numbersOnly(event)"  >
+                </td> 
+            </tr>
+             <tr>
+                <td> Address:</td>
+                <td>
+                    <textarea id="edit-address" maxlength="350" rows="4"></textarea>
+                </td> 
+            </tr>
+            <tr>
+                <td> Telephone:</td>
+                <td>
+                    <input type="text" id="edit-telephone" maxlength="15" onkeypress="return numbersOnly(event)" >
+                </td> 
+            </tr>
+            <tr>
+                <td> Reference:</td>
+                <td>
+                    <input type="text" id="edit-reference" maxlength="25">
+                </td> 
+            </tr> 
+            <tr>
+                <td> &nbsp; </td>
+                <td>
+                    <input type="submit" value="Save">
+                </td> 
+            </tr>
+        </table>   
             
             
         </form>
@@ -82,8 +75,8 @@
 
 
     <table>
-        <tr colspan="5"> 
-    <p id="counter"></p>
+        <tr colspan="5" style="align-content:left"> 
+            <p id="counter"></p>
         </tr>
         <tr>
             <th>First Name</th>
@@ -97,8 +90,11 @@
         </tr>
         <tbody id="customerTbl"></tbody>
     </table>
+    
+    <script src="~/js/customermanager.ui.js" asp-append-version="true"></script>
+    <script type="text/javascript"> 
 
-    <script src="js/customermanager.ui.js" asp-append-version="true"></script>
-    <script type="text/javascript">
-        getItems();
+        getCustomers(); 
+
+       
     </script>

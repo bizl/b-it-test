@@ -24,13 +24,13 @@ namespace CustomerManager.Data
             {
                 data = conn.Query<Customer>(
                            @"select ID, 
-                            JSON_VALUE(c.Text, '$.FirstName') as FirstName,
-                            JSON_VALUE(c.Text, '$.LastName') as LastName,
-                            JSON_VALUE(c.Text, '$.Age') as Age,
-                            JSON_VALUE(c.Text, '$.Address') as Address,
-                            JSON_VALUE(c.Text, '$.Reference') as Reference,
-                            JSON_VALUE(c.Text, '$.Telephone') as Telephone
-                            from[dbo].[Customers] c WHERE (Id= @Id or @Id=0)",
+                            ISNULL(JSON_VALUE(c.Text, '$.FirstName'),'') as FirstName,
+                            ISNULL(JSON_VALUE(c.Text, '$.LastName'),'') as LastName,
+                            JSON_VALUE(c.Text, '$.Age')  as Age,
+                            ISNULL(JSON_VALUE(c.Text, '$.Address'),'') as Address,
+                            ISNULL(JSON_VALUE(c.Text, '$.Reference'),'') as Reference,
+                            ISNULL(JSON_VALUE(c.Text, '$.Telephone'),'') as Telephone
+                            from[dbo].[Customers] c WHERE (Id= @Id or @Id is null)",
                            customer
                           );
             }
@@ -53,7 +53,7 @@ namespace CustomerManager.Data
 
         public int Update(Customer customer, Guid updateUser)
         {
-
+            //TODO - delete flag to be set once implemented in Db, to support Delete
             int affectedRows = 0;
             using (IDbConnection conn = new SqlConnection(_connectionString))
             {
@@ -64,5 +64,7 @@ namespace CustomerManager.Data
             }
             return affectedRows;
         }
+
+
     }
 }
