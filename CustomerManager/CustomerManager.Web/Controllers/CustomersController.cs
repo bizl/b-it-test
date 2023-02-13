@@ -1,13 +1,13 @@
 ﻿using CustomerManager.Data.Interfaces;
 using CustomerManager.Domain;
-using System.Net;
-using System.Web.Http;
+using Microsoft.AspNetCore.Mvc; 
 
  
 namespace CustomerManager.Web.Controllers
 {
-    [Route("api/[controller]")] 
-    public class CustomersController : ApiController
+    [Route("api/customers")]
+    [ApiController]
+    public class CustomersController : ControllerBase
     {
         IRepository<Customer> _customerRepository; 
         public CustomersController(IRepository<Customer> customerRepository)
@@ -32,12 +32,12 @@ namespace CustomerManager.Web.Controllers
         // POST api/<CustomersController>
         [HttpPost]
         [Route("{id}")]
-        public IHttpActionResult Post(long id, [FromBody] Customer sent)
+        public ActionResult Post(long id, [FromBody] Customer sent)
         {
             var customer = _customerRepository.Get(new Customer { Id = id }).FirstOrDefault();
             if (customer == null)
             {
-                return Content(HttpStatusCode.BadRequest, "Customer already exists");
+                return BadRequest(  "Customer already exists"  );
             }
 
             //TODO  - replace Guid with logged in user id 
@@ -48,13 +48,13 @@ namespace CustomerManager.Web.Controllers
 
         // PUT api/<CustomersController>/5
         [HttpPut]
-        public  IHttpActionResult Put(long id, [FromBody] Customer sent)
+        public  ActionResult Put(long id, [FromBody] Customer sent)
         {
 
             var customer = _customerRepository.Get(new Customer { Id = sent.Id }).FirstOrDefault();
             if (customer == null)
             {
-                return Content(HttpStatusCode.BadRequest, "Customer not found");
+                return BadRequest( "Customer not found");
             } 
 
             try
@@ -64,7 +64,7 @@ namespace CustomerManager.Web.Controllers
             }
             catch (Exception ex)
             {
-              return  InternalServerError(ex);
+                return StatusCode(500, ex);
             }
 
             return NotFound ();

@@ -4,9 +4,10 @@
 } 
 
     <h1>Manage Customers</h1>
-    <h3>Add</h3>
+
+      
     <form action="javascript:void(0);" method="POST" onsubmit="addItem()">
-        <input type="text" id="add-name" placeholder="New to-do">
+        <input type="text" id="add-name" placeholder="New customer">
         <input type="submit" value="Add">
     </form>
 
@@ -15,7 +16,7 @@
         <form action="javascript:void(0);" onsubmit="updateItem()">
             <input type="hidden" id="edit-id">
             <input type="checkbox" id="edit-isComplete">
-            <input type="text" id="edit-name">
+            <input type="text" id="edit-details">
             <input type="submit" value="Save">
             <a onclick="closeInput()" aria-label="Close">&#10006;</a>
         </form>
@@ -25,15 +26,18 @@
 
     <table>
         <tr>
-            <th>Is Complete?</th>
-            <th>Name</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Age</th>
+            <th>Telephone</th>
+            <th>Reference</th>
             <th></th>
             <th></th>
         </tr>
-        <tbody id="todos"></tbody>
+        <tbody id="customerTbl"></tbody>
     </table>
 
-    <script src="js/site.js" asp-append-version="true"></script>
+    <script src="js/customermanager.ui.js" asp-append-version="true"></script>
     <script type="text/javascript">
         getItems();
     </script>
