@@ -1,8 +1,8 @@
 ﻿using CustomerManager.Data.Interfaces;
 using CustomerManager.Domain;
-using Microsoft.AspNetCore.Mvc; 
+using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
- 
 namespace CustomerManager.Web.Controllers
 {
     [Route("api/customers")]
@@ -40,8 +40,10 @@ namespace CustomerManager.Web.Controllers
                 return BadRequest(  "Customer already exists"  );
             }
 
-            //TODO  - replace Guid with logged in user id 
-            _customerRepository.Insert(customer, Guid.NewGuid());
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            Guid user;
+            Guid.TryParse(userId, out user);
+            _customerRepository.Insert(customer, user);
 
             return Ok("Created");
         }
@@ -55,12 +57,14 @@ namespace CustomerManager.Web.Controllers
             if (customer == null)
             {
                 return BadRequest( "Customer not found");
-            } 
+            }
 
             try
             {
-                //TODO  - replace Guid with logged in user id 
-                _customerRepository.Update(customer, Guid.NewGuid());
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier); 
+                Guid user;
+                Guid.TryParse(userId, out user);
+                _customerRepository.Update(sent, user);
             }
             catch (Exception ex)
             {

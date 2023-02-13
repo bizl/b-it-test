@@ -23,7 +23,14 @@ namespace CustomerManager.Data
             using (IDbConnection conn = new SqlConnection(_connectionString))
             {
                 data = conn.Query<Customer>(
-                           "select * from dbo.Customers WHERE (Id= @Id or @Id=0)",
+                           @"select ID, 
+                            JSON_VALUE(c.Text, '$.FirstName') as FirstName,
+                            JSON_VALUE(c.Text, '$.LastName') as LastName,
+                            JSON_VALUE(c.Text, '$.Age') as Age,
+                            JSON_VALUE(c.Text, '$.Address') as Address,
+                            JSON_VALUE(c.Text, '$.Reference') as Reference,
+                            JSON_VALUE(c.Text, '$.Telephone') as Telephone
+                            from[dbo].[Customers] c WHERE (Id= @Id or @Id=0)",
                            customer
                           );
             }

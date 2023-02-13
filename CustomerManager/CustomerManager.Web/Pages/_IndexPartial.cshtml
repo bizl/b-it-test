@@ -6,7 +6,7 @@
     <h1>Manage Customers</h1>
 
       
-    <form action="javascript:void(0);" method="POST" onsubmit="addItem()">
+    <form id="insertForm" action="javascript:void(0);" method="POST" onsubmit="addItem()">
         <input type="text" id="add-name" placeholder="New customer">
         <input type="submit" value="Add">
     </form>
@@ -14,21 +14,82 @@
     <div id="editForm">
         <h3>Edit</h3>
         <form action="javascript:void(0);" onsubmit="updateItem()">
-            <input type="hidden" id="edit-id">
-            <input type="checkbox" id="edit-isComplete">
-            <input type="text" id="edit-details">
-            <input type="submit" value="Save">
-            <a onclick="closeInput()" aria-label="Close">&#10006;</a>
+            
+    <table>
+        <th> 
+            <td>Edit customer detail
+
+            <input type="hidden" id="edit-id"> 
+            </td>
+            <td>
+                <a onclick="closeInput()" aria-label="Close">&#10006;</a>
+            </td>
+        </th>
+        <tr style="width:20%">
+            <td> First name:</td>
+            <td><input type="text" id="edit-firstname" maxlength="50">
+
+            </td> 
+        </tr>
+        <tr style="width:20%">
+            <td> Last name:</td>
+            <td>
+                <input type="text" id="edit-lastname" maxlength="50">
+            </td> 
+        </tr>
+        <tr style="width:20%">
+            <td> Age:</td>
+            <td>
+                <input type="text" id="edit-age" maxlength="3" data-validate="number">
+            </td> 
+        </tr>
+        <tr style="width:20%">
+            <td> Address:</td>
+            <td>
+                <textarea type="text" id="edit-address" maxlength="350" rows="4" />
+            </td> 
+        </tr>
+        <tr style="width:20%">
+            <td> Telephone:</td>
+            <td>
+                <input type="text" id="edit-telephone" maxlength="15">
+            </td> 
+        </tr>
+        <tr style="width:20%">
+            <td> Reference:</td>
+            <td>
+                <input type="text" id="edit-reference" maxlength="25">
+            </td> 
+        </tr> 
+        <tr style="width:20%">
+            <td> &nbsp; </td>
+            <td>
+                <input type="submit" value="Save">
+            </td> 
+        </tr> 
+    </table>
+           
+            
+            
+            
+            
+            
+            
+            
+            
         </form>
     </div>
 
-    <p id="counter"></p>
 
     <table>
+        <tr colspan="5"> 
+    <p id="counter"></p>
+        </tr>
         <tr>
             <th>First Name</th>
             <th>Last Name</th>
             <th>Age</th>
+            <th>Address</th>
             <th>Telephone</th>
             <th>Reference</th>
             <th></th>
