@@ -3,6 +3,7 @@ using CustomerManager.Domain;
 using Dapper;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.SqlServer.Infrastructure.Internal;
 using Newtonsoft.Json;
 using System.Data;
 
@@ -15,6 +16,12 @@ namespace CustomerManager.Data
         public CustomerDbContext(DbContextOptions<CustomerDbContext> options)
 : base(options)
         {
+            var sqlServerOptionsExtension =
+                   options.FindExtension<SqlServerOptionsExtension>();
+            if (sqlServerOptionsExtension != null)
+            {
+                _connectionString = sqlServerOptionsExtension.ConnectionString;
+            }
 
         }
 
@@ -22,8 +29,7 @@ namespace CustomerManager.Data
         {
             _connectionString = connectionString;
         }
-
-        public DbSet<Customer> Items { get; set; } = null!;
+         
 
         public List<Customer> Get(Customer customer)
         {
