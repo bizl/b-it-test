@@ -2,7 +2,7 @@
 Customer Manager Web app (.Net Core, plain JS front end)
 
 
-##Stack Features
+## Application stack 
 
 ### 1/ Pure javascript front end 
 Basic grid, quick add customer name to insert record, that can be modified inline. 
