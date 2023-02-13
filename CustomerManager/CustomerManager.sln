@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerManager.Web", "CustomerManager.Web\CustomerManager.Web.csproj", "{E379D11D-A684-4316-9F1B-E116D0B5C8CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerManager.Web", "CustomerManager.Web\CustomerManager.Web.csproj", "{E379D11D-A684-4316-9F1B-E116D0B5C8CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerManager.Domain", "CustomerManager.Domain\CustomerManager.Domain.csproj", "{AB48579A-12BE-466A-9D24-42AF38B5A3E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerManager.Domain", "CustomerManager.Domain\CustomerManager.Domain.csproj", "{AB48579A-12BE-466A-9D24-42AF38B5A3E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerManager.Data", "CustomerManager.Data\CustomerManager.Data.csproj", "{3A9DC876-CE2C-4F9F-A431-AE0526145577}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerManager.Data", "CustomerManager.Data\CustomerManager.Data.csproj", "{3A9DC876-CE2C-4F9F-A431-AE0526145577}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerManager.Tests", "CustomerManager.Tests\CustomerManager.Tests.csproj", "{D6CE06B8-4651-43CB-9F32-1F4EC6674A87}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerManager.Tests", "CustomerManager.Tests\CustomerManager.Tests.csproj", "{D6CE06B8-4651-43CB-9F32-1F4EC6674A87}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
