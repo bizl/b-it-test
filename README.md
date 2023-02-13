@@ -1,6 +1,10 @@
 # b-it-test
 Customer Manager Web app ( plain JS front end, .Net Core, MS SQL Server)
 
+#### Contents
+- Application Stack
+- How to run the website
+
 
 ## Application stack 
 
