@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace CustomerManager.Data.Interfaces
 {
-    internal class IRepository
+    public interface IRepository<T> where T : class
     {
+        public List<T> Get(T t);
+        public int Insert(T t, Guid createUser);
     }
 }
