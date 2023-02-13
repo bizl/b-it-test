@@ -1,35 +1,55 @@
 ﻿using CustomerManager.Data.Interfaces;
 using CustomerManager.Domain;
+using Dapper;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using System.Data;
 
 namespace CustomerManager.Data
 {
     public class CustomerDbContext : DbContext, IRepository<Customer>
     {
+        string _connectionString;
+
         public CustomerDbContext(DbContextOptions<CustomerDbContext> options)
-        : base(options)
+: base(options)
         {
+
         }
-         
+
+        public CustomerDbContext(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
+
         public DbSet<Customer> Items { get; set; } = null!;
 
-        public List<Customer> Get(Customer t)
+        public List<Customer> Get(Customer customer)
         {
-            return Items.Where(x => t.Id == x.Id).ToList();
+            IEnumerable<Customer> data;
+            using (IDbConnection conn = new SqlConnection(_connectionString))
+            {
+                data = conn.Query<Customer>(
+                           "select * from dbo.Customers WHERE (Id= @Id or @Id=0)",
+                           customer
+                          );
+            }
+            return data.ToList();
         }
 
-        public int Insert(Customer t, Guid createUser)
+        public int Insert(Customer customer, Guid createUser)
         {
-            int result = 1;
-            try
+
+            int affectedRows = 0;
+            using (IDbConnection conn = new SqlConnection(_connectionString))
             {
-                Items.Add(t);
-            }   
-            catch(Exception ex)
-            {
-                result = 0;
+                affectedRows = conn.Execute(
+                       "insert into Customers (Text, CreateUser) VALUES (@Text, @CreateUser)",
+                      new { Text = JsonConvert.SerializeObject(customer), CreateUser = createUser }
+                      );
             }
-            return result; 
+            return affectedRows;
         }
     }
 }
