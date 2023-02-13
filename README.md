@@ -16,10 +16,11 @@ Immediate next improvements:
 - add delete feature 
 
 ### 2/ .Net Core CRUD API, setupMS .Net Core scaffolding  
-- see  https://localhost:<port>/swagger/index.html  
+- see  https://localhost:|port|/swagger/index.html  
 
 Immediate next improvements:
   - use DTOS for security and throttling 
+  - use SignInManager for getting user Id when updating database records
   - improve endpoint documentation using annotations  
   - clean up redundant endpoints  
 
