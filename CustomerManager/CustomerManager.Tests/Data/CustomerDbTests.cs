@@ -1,9 +1,6 @@
 ﻿using CustomerManager.Data;
 using CustomerManager.Data.Interfaces;
-using CustomerManager.Domain;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Caching.Memory;
-using Moq;
+using CustomerManager.Domain; 
 using NUnit.Framework;
 
 namespace CustomerManager.Tests.Data
@@ -12,8 +9,7 @@ namespace CustomerManager.Tests.Data
     public class CustomerDbTests
     {
 
-        private IRepository<Customer> _repo;
-        private readonly  IMemoryCache _memoryCache;
+        private IRepository<Customer> _repo; 
 
         [SetUp]
         public void SetUp()

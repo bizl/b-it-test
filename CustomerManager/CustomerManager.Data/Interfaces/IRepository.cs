@@ -4,5 +4,6 @@
     {
         public List<T> Get(T t);
         public int Insert(T t, Guid createUser);
+        public int Update(T t, Guid updateUser);
     }
 }

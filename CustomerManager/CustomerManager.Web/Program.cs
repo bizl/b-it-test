@@ -1,4 +1,6 @@
 using CustomerManager.Data;
+using CustomerManager.Data.Interfaces;
+using CustomerManager.Domain;
 using CustomerManager.Web.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -13,8 +15,8 @@ builder.Services.AddSwaggerGen();
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
-builder.Services.AddDbContext<CustomerDbContext>(opt =>
-    opt.UseSqlServer(connectionString));
+builder.Services.AddScoped<IRepository<Customer>, CustomerDbContext>(x => new CustomerDbContext(connectionString));
+
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 

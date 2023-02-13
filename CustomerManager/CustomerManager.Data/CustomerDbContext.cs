@@ -1,29 +1,15 @@
 ﻿using CustomerManager.Data.Interfaces;
 using CustomerManager.Domain;
 using Dapper;
-using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.SqlServer.Infrastructure.Internal;
+using Microsoft.Data.SqlClient; 
 using Newtonsoft.Json;
 using System.Data;
 
 namespace CustomerManager.Data
 {
-    public class CustomerDbContext : DbContext, IRepository<Customer>
+    public class CustomerDbContext : IRepository<Customer>
     {
-        string _connectionString;
-
-        public CustomerDbContext(DbContextOptions<CustomerDbContext> options)
-: base(options)
-        {
-            var sqlServerOptionsExtension =
-                   options.FindExtension<SqlServerOptionsExtension>();
-            if (sqlServerOptionsExtension != null)
-            {
-                _connectionString = sqlServerOptionsExtension.ConnectionString;
-            }
-
-        }
+        string _connectionString; 
 
         public CustomerDbContext(string connectionString)
         {
@@ -53,6 +39,20 @@ namespace CustomerManager.Data
                 affectedRows = conn.Execute(
                        "insert into Customers (Text, CreateUser) VALUES (@Text, @CreateUser)",
                       new { Text = JsonConvert.SerializeObject(customer), CreateUser = createUser }
+                      );
+            }
+            return affectedRows;
+        }
+
+        public int Update(Customer customer, Guid updateUser)
+        {
+
+            int affectedRows = 0;
+            using (IDbConnection conn = new SqlConnection(_connectionString))
+            {
+                affectedRows = conn.Execute(
+                       "update Customers  set Text = @Text, LastUpdateUser = @UpdateUser WHERE Id = @Id",
+                      new { Text = JsonConvert.SerializeObject(customer), UpdateUser = updateUser, Id= customer.Id }
                       );
             }
             return affectedRows;
