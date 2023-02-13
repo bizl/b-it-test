@@ -10,7 +10,7 @@ Basic grid, quick add customer name to insert record, that can be modified inlin
 
 Immediate next improvements:
 - improve stlying overall 
-- replace js library with jquery, knockoujs, vuejs or Kendo (latest free library required subcription so didn't bother) 
+- replace js library with jquery, knockoujs, vuejs or Kendo (latest free library required subcription so deferred) 
 - UI validation
 - use pop-up for quick add customer 
 - add delete feature 
