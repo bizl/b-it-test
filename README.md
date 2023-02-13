@@ -4,8 +4,10 @@ Customer Manager Web app (.Net Core, plain JS front end)
 
 ## Application stack 
 
+
 ### 1/ Pure javascript front end 
 Basic grid, quick add customer name to insert record, that can be modified inline. 
+
 Immediate next improvements:
 - improve stlying overall 
 - replace js library with jquery, knockoujs, vuejs or Kendo (latest free library required subcription so didn't bother) 
@@ -15,6 +17,7 @@ Immediate next improvements:
 
 ### 2/ .Net Core CRUD API, setupMS .Net Core scaffolding  
 - see  https://localhost:<port>/swagger/index.html  
+
 Immediate next improvements:
   - use DTOS for security and throttling 
   - improve endpoint documentation using annotations  
@@ -22,14 +25,16 @@ Immediate next improvements:
 
 
 ### 3/ Custome repo with Customers table in aspNet Security tables. 
-Immediate next improvements:
+
+  Immediate next improvements:
   - move Customer Table into separate database
   - redesign interfaces to allow use of non-Sql data sources
   - replace Dapper with more powerful ORM 
   
   
  ### 4 / Tests 
-  Improvements:
+ 
+  Immediate next improvements:
   - API controller tests
   - Mock
   
