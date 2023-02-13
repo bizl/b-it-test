@@ -1,5 +1,5 @@
 # b-it-test
-Customer Manager Web app (.Net Core, plain JS front end)
+Customer Manager Web app ( plain JS front end, .Net Core, MS SQL Server)
 
 
 ## Application stack 
