@@ -48,7 +48,14 @@ Immediate next improvements:
   
 Potential issues
   If any issues with database connection
+  
   1/ update connection string in appSettings.json. Replace |DataDirectory| with the system file path to your web solution e.g. c:\\Dev\|full-path|\BoroughITTest\CustomerManager\CustomerManager.Web\App_Data\aspnet-CustomerManager.Web-53bc9b9d-9d6a-45d4-8429-2a2761773502.mdf. Repeat Step 3 above. 
+  
+  
  2/  if issues persist, navigate to the App_Data folder,  find "aspnet-CustomerManager.Web-53bc9b9d-9d6a-45d4-8429-2a2761773502.mdf", right click. go to Security tab and  give "Full control" to "Authenticated Users" 
+   
+  3/ If issues exist, add "/User ID=sa;Password=|sa-password|" add credentials to your sa SQL server account to the connection string
+  
+  
   
   
