@@ -40,11 +40,28 @@ Immediate next improvements:
   - Mock
   
 ## How to Run the site (windows) 
-1/ Checkout the git repository 
-2/  Start command prompt and navigate to the web application root folder  <local-folder>\BoroughITTest\CustomerManager\CustomerManager.Web
-3/ Type "dotnet run". The site will build and display the server url and endpoint. If this hangs up press the space or any other key to get it moving.  Ctrl + C to stop the server. 
-4/  Enter url in web browser 
-5/ If any issues with database connection, update connection string in appSettings.json. Replace |DataDirectory| with the system file path to your web solution e.g. c:\\Dev\|full-path|\BoroughITTest\CustomerManager\CustomerManager.Web\App_Data\aspnet-CustomerManager.Web-53bc9b9d-9d6a-45d4-8429-2a2761773502.mdf. Repeat Step 3 above. 
-- Register with username and password, then login 
+
+-1/ Checkout the git repository 
+
+-2/  Start command prompt and navigate to the web application root folder  <local-folder>\\BoroughITTest\\CustomerManager\\CustomerManager.Web (note double back slashes)
+  
+-3/ Type "dotnet run". The site will build and display the server url and endpoint. If this hangs up press the space or any other key to get it moving (or at any other point if the build seems to have hung up).  Ctrl + C to stop the server. 
+  
+-4/  Enter url in web browser 
+  
+-5/  Register with username and password, then login
+  
+  
+### Potential issues
+  If any issues with database connection
+  
+  1/ update connection string in appSettings.json. Replace |DataDirectory| with the system file path to your web solution e.g. c:\\Dev\|full-path|\BoroughITTest\CustomerManager\CustomerManager.Web\App_Data\aspnet-CustomerManager.Web-53bc9b9d-9d6a-45d4-8429-2a2761773502.mdf. Repeat Step 3 above. 
+  
+  
+ 2/  if issues persist, navigate to the App_Data folder,  find "aspnet-CustomerManager.Web-53bc9b9d-9d6a-45d4-8429-2a2761773502.mdf", right click. go to Security tab and  give "Full control" to "Authenticated Users" 
+   
+  3/ If issues exist, add "/User ID=sa;Password=|sa-password|" add credentials to your sa SQL server account to the connection string
+  
+  
   
   
