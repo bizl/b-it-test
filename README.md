@@ -40,11 +40,18 @@ Immediate next improvements:
   - Mock
   
 ## How to Run the site (windows) 
+
 1/ Checkout the git repository 
+
 2/  Start command prompt and navigate to the web application root folder  <local-folder>\BoroughITTest\CustomerManager\CustomerManager.Web
-3/ Type "dotnet run". The site will build and display the server url and endpoint. If this hangs up press the space or any other key to get it moving.  Ctrl + C to stop the server. 
+  
+3/ Type "dotnet run". The site will build and display the server url and endpoint. If this hangs up press the space or any other key to get it moving (or at any other point if the build seems to have hung up).  Ctrl + C to stop the server. 
+  
 4/  Enter url in web browser 
+  
 5/  Register with username and password, then login
+  
+  
   
 Potential issues
   If any issues with database connection
